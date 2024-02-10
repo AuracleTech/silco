@@ -121,6 +121,7 @@ html {
 
 .panel>.viewport>.lines>.line {
   line-height: var(--line-height);
+  padding: 0 128px 0 0;
 }
 
 .panel>.viewport>.lines>.line>.highlight {

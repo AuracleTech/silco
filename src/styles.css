@@ -1,0 +1,237 @@
+@font-face {
+  font-family: 'Fira Code';
+  src: url('assets/FiraCode-VariableFont_wght.ttf') format('truetype');
+}
+
+:root {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  letter-spacing: var(--letter-spacing);
+  font-weight: var(--font-weight);
+
+  color: var(--editor-foreground);
+  background-color: var(--editor-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --editor-foreground: #97A7C8;
+  --editor-background: #222236;
+  --line-highlight: #24273E;
+  --font-family: 'Fira Code';
+  --font-size: 14px;
+  --font-weight: 400;
+  --letter-spacing: -0.2px;
+  --line-height: 24px;
+  --margin-font-color: #50506d;
+  --margin-border-color: transparent;
+  --even-line-color: orange;
+  /* --even-line-color: hsl(240, 24%, 16.4%); */
+  --scrollbar-size: 16px;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+
+/* MARGIN */
+
+.panel>.margin {
+  text-align: center;
+  user-select: none;
+  border-right: 1px solid var(--margin-border-color);
+  overflow: hidden;
+  line-height: var(--line-height);
+  font-size: 13px;
+  padding: 0 0 calc(calc(var(--line-height) * 4) + var(--scrollbar-size)) 0;
+}
+
+.panel>.margin>.number {
+  padding: 0 10px;
+  color: var(--margin-font-color);
+}
+
+.panel>.margin>.number.even {
+  background: var(--even-line-color);
+}
+
+/* VIEWPORT */
+
+.panel>.viewport {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  padding: 0 0 calc(var(--line-height) * 4) 0;
+}
+
+/* LINES */
+
+.panel>.viewport>.lines {
+  min-width: max-content;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel>.viewport>.lines>.line.even {
+  background: var(--even-line-color);
+}
+
+.panel>.viewport>.lines>.line {
+  line-height: var(--line-height);
+}
+
+.panel>.viewport>.lines>.line>.highlight {
+  background: var(--line-highlight);
+
+}
+
+.panel>.viewport>.lines>.line>.tokens {
+  overflow-wrap: normal;
+  white-space: pre;
+}
+
+.panel>.viewport>.lines>.line>.tokens>.token {
+  /*  */
+}
+
+/* SCROLLBARS */
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+  position: fixed;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #31314e66;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #31314e99;
+}
+
+::-webkit-scrollbar {
+  position: absolute;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+  /* Color of the scrollbar corner */
+}
+
+/* .lines,
+.lines>.line,
+.lines>.line>.tokens,
+.margin>.number {
+  outline: 1px solid #00ffdd30;
+} */
+
+
+/* RUST SYNTAX HIGHLIGHT */
+/*
+Whitespace
+Keyword
+CommentLine
+CommentBlock
+Newline
+String
+Char
+Operator
+DoubleColon
+Semicolon
+Colon
+Identifier
+Caret
+Integer
+Float
+
+Lifetime
+OpenBrace
+CloseBrace
+OpenParen
+CloseParen
+OpenBracket
+CloseBracket
+Comma
+Hash
+Dot
+Pipe
+OpenAngle
+CloseAngle
+TempBorrow
+Question
+MacroExclamation
+*/
+
+.token {
+  color: red;
+}
+
+.token.rust.Keyword {
+  color: #D59DF6;
+}
+
+.token.rust.CommentLine,
+.token.rust.CommentBlock {
+  color: #506686;
+}
+
+.token.rust.String {
+  color: #22ffbd;
+}
+
+.token.rust.Char {
+  color: #AC58FF;
+}
+
+.token.rust.Operator,
+.token.rust.DoubleColon,
+.token.rust.Colon,
+.token.rust.Caret {
+  color: #4FF2F8;
+}
+
+.token.rust.Identifier {
+  color: #B7C6DA;
+}
+
+.token.rust.Semicolon {
+  color: #d8d8d8;
+}
+
+.token.rust.Float,
+.token.rust.Integer {
+  color: #42ff76;
+}
+
+.token.rust.eeeeeee {
+  color: #2600ff;
+}
+
+.token.rust.eeeeeeeee {
+  color: #2600ff;
+}

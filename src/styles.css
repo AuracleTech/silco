@@ -28,14 +28,11 @@
   --line-height: 24px;
   --margin-font-color: #50506d;
   --margin-border-color: transparent;
-  --even-line-color: orange;
-  /* --even-line-color: hsl(240, 24%, 16.4%); */
+  /* --even-line-color: orange; */
+  --even-line-color: hsl(240, 24%, 16.4%);
   --scrollbar-size: 16px;
-}
-
-body,
-html {
-  height: 100%;
+  --actionbar-background: #151520;
+  --folder-background: #1E1D2E;
 }
 
 * {
@@ -45,17 +42,45 @@ html {
   box-sizing: border-box;
 }
 
-.panel {
+body,
+html {
+  height: 100%;
+}
+
+#interface {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  white-space: nowrap;
+}
+
+/* ACTION BAR */
+
+#actionbar {
+  min-width: 50px;
+  background-color: var(--actionbar-background);
+}
+
+/* FOLDERS */
+
+#folders {
+  min-width: 200px;
+  background-color: var(--folder-background);
+}
+
+/* PANEL */
+
+.panel {
+  flex: 1;
+  max-width: calc(100% - 250px);
+  display: flex;
+  flex-direction: row;
 }
 
 /* MARGIN */
 
 .panel>.margin {
+  flex-shrink: 0;
   text-align: center;
   user-select: none;
   border-right: 1px solid var(--margin-border-color);
@@ -63,6 +88,7 @@ html {
   line-height: var(--line-height);
   font-size: 13px;
   padding: 0 0 calc(calc(var(--line-height) * 4) + var(--scrollbar-size)) 0;
+  white-space: pre;
 }
 
 .panel>.margin>.number {
@@ -77,19 +103,16 @@ html {
 /* VIEWPORT */
 
 .panel>.viewport {
-  overflow: auto;
-  width: 100%;
-  height: 100%;
+  flex: 1;
   padding: 0 0 calc(var(--line-height) * 4) 0;
+  overflow: auto;
 }
 
 /* LINES */
 
 .panel>.viewport>.lines {
+  white-space: pre;
   min-width: max-content;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
 }
 
 .panel>.viewport>.lines>.line.even {
@@ -107,11 +130,10 @@ html {
 
 .panel>.viewport>.lines>.line>.tokens {
   overflow-wrap: normal;
-  white-space: pre;
 }
 
 .panel>.viewport>.lines>.line>.tokens>.token {
-  /*  */
+  background: rgb(74, 27, 136);
 }
 
 /* SCROLLBARS */
@@ -135,7 +157,7 @@ html {
 }
 
 ::-webkit-scrollbar {
-  position: absolute;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-corner {

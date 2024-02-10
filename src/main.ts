@@ -4,7 +4,7 @@ let panel: HTMLInputElement | null;
 let margin: HTMLElement | null;
 let lines: HTMLElement | null;
 
-panel = document.querySelector("#randompanel");
+panel = document.querySelector("#panel-34234234");
 if (panel) {
 	margin = panel.querySelector(".margin");
 	lines = panel.querySelector(".lines");

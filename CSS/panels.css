@@ -2,6 +2,7 @@
 	--scrollbar-background: #8080ad;
 	--scrollbar-size: 8px;
 	--panel: #1e1d2e;
+	--panel-text-color: #e3e8e5;
 	--panel-bar-height: 40px;
 	--close-button-hover: #b00b55;
 	--grabbing-color: #2eff9d;
@@ -12,28 +13,30 @@
 	--panel-min-height: 40px;
 }
 
-body,
-html,
-#wall {
+.panels {
 	width: 100%;
 	height: 100%;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
-#wall.numb {
+.panels.numb {
 	pointer-events: none;
 }
-#wall.resizing {
+.panels.resizing {
 	background: #ab2eff11;
 }
-#wall.resizing > .panel.focus > .bar {
+.panels.resizing>.panel.focus>.bar {
 	background-image: linear-gradient(var(--resize-color) 4px, transparent 4px);
 }
-#wall.grabbing > .panel.focus > .bar > .grab {
+.panels.grabbing>.panel.focus>.bar>.grab {
 	cursor: grabbing;
 }
-#wall.grabbing {
+.panels.grabbing {
 	background: #2eff9d11;
 }
-#wall.grabbing > .panel.focus > .bar {
+.panels.grabbing>.panel.focus>.bar {
 	background-image: linear-gradient(var(--grabbing-color) 4px, transparent 4px);
 }
 
@@ -60,75 +63,74 @@ html,
 	min-height: var(--panel-min-height);
 	background-color: var(--panel);
 	outline: 1px solid var(--panel);
+	color: var(--panel-text-color);
 	border-radius: 1px;
 	overflow: hidden;
 }
-.panel > .bar {
+.panel>.bar {
 	flex-shrink: 0;
 	display: flex;
 	height: var(--panel-bar-height);
 	width: 100%;
 }
-.panel.focus > .bar {
+.panel.focus>.bar {
 	background-image: linear-gradient(var(--focus-color) 4px, transparent 4px);
 }
-.panel > .bar > .grab {
+.panel>.bar>.grab {
 	min-width: var(--panel-bar-height);
 	flex-grow: 1;
 }
-/* TODO Make Hold to close */
-.panel > .bar > .close {
+/* TODO Make hold close to close */
+.panel>.bar>.close {
 	position: relative;
 }
-.panel > .bar > .close:hover {
-	filter: invert(14%) sepia(35%) saturate(7392%) hue-rotate(319deg)
-		brightness(98%) contrast(104%) !important;
+.panel>.bar>.close:hover {
+	filter: invert(14%) sepia(35%) saturate(7392%) hue-rotate(319deg) brightness(98%) contrast(104%) !important;
 }
-.panel.focus > .bar > .close:hover::after {
-	content: '';
+.panel.focus>.bar>.close:hover::after {
+	content: "";
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-image: linear-gradient(#000000 4px, transparent 4px);
 }
-.panel > .bar > .resize {
+.panel>.bar>.resize {
 	background-position: -60px 0px;
 }
-.panel > .bar > .alternate {
+.panel>.bar>.alternate {
 	background-position: 0px -30px;
 }
-.panel > .bar > .alternate.restore {
+.panel>.bar>.alternate.restore {
 	background-position: -30px -30px;
 }
-.panel.squish > .bar > .resize,
-.panel.squish > .bar > .alternate {
+.panel.squish>.bar>.resize,
+.panel.squish>.bar>.alternate {
 	display: none;
 }
-.panel > .bar > .squish {
+.panel>.bar>.squish {
 	background-position: 0px -60px;
 }
-.panel.squish > .bar > .squish {
+.panel.squish>.bar>.squish {
 	background-position: -60px -30px;
 }
-.panel > .bar > .option {
+.panel>.bar>.option {
 	cursor: pointer;
 	height: var(--panel-bar-height);
 	width: var(--panel-bar-height);
 	filter: invert(1);
 	background-repeat: no-repeat;
-	background-image: url('../IMG/panels.png');
+	background-image: url("../IMG/panels.png");
 }
-.panel > .bar > .option:hover {
-	filter: invert(70%) sepia(41%) saturate(7477%) hue-rotate(184deg)
-		brightness(104%) contrast(101%);
+.panel>.bar>.option:hover {
+	filter: invert(70%) sepia(41%) saturate(7477%) hue-rotate(184deg) brightness(104%) contrast(101%);
 }
-.panel > .content {
+.panel>.content {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 }
-.panel.squish > .content {
+.panel.squish>.content {
 	display: none;
 }

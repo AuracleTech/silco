@@ -1,17 +1,9 @@
 @font-face {
   font-family: 'Fira Code';
-  src: url('assets/FiraCode-VariableFont_wght.ttf') format('truetype');
+  src: url('../FONT/FiraCode.ttf') format('truetype');
 }
 
 :root {
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  letter-spacing: var(--letter-spacing);
-  font-weight: var(--font-weight);
-
-  color: var(--editor-foreground);
-  background-color: var(--editor-background);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,10 +13,6 @@
   --editor-foreground: #97A7C8;
   --editor-background: #222236;
   --line-highlight: #24273E;
-  --font-family: 'Fira Code';
-  --font-size: 14px;
-  --font-weight: 400;
-  --letter-spacing: -0.2px;
   --line-height: 24px;
   --margin-font-color: #50506d;
   --margin-border-color: transparent;
@@ -33,58 +21,53 @@
   --scrollbar-size: 16px;
   --actionbar-background: #151520;
   --folder-background: #1E1D2E;
-  --caret-color: #ACED00;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  outline: 0;
-  box-sizing: border-box;
-}
-
-body,
-html {
-  height: 100%;
-  caret-color: var(--caret-color);
-}
-
-#interface {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
+  --editor-caret-color: #ACED00;
+  --editor-font-family: 'Fira Code';
+  --editor-font-size: 14px;
+  --editor-font-weight: 400;
+  --editor-letter-spacing: -0.2px;
 }
 
 /* ACTION BAR */
 
-#actionbar {
+.actionbar {
   min-width: 50px;
   background-color: var(--actionbar-background);
 }
 
 /* FOLDERS */
 
-#folders {
+.folders {
   min-width: 200px;
   background-color: var(--folder-background);
 }
 
-/* PANEL */
+/* EDITOR */
 
-.panel {
-  flex: 1;
-  max-width: calc(100% - 250px);
+custom-editor {
+  max-width: 100%;
   display: flex;
   flex-direction: row;
+
+  font-family: var(--editor-font-family);
+  font-size: var(--editor-font-size);
+  letter-spacing: var(--editor-letter-spacing);
+  font-weight: var(--editor-font-weight);
+  color: var(--editor-foreground);
+  background-color: var(--editor-background);
+  caret-color: var(--editor-caret-color);
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
-/* MARGIN */
+/* EDITOR MARGIN */
 
-.panel>.margin {
+custom-editor>.margin {
   flex-shrink: 0;
   text-align: center;
-  user-select: none;
   border-right: 1px solid var(--margin-border-color);
   overflow: hidden;
   line-height: var(--line-height);
@@ -93,77 +76,78 @@ html {
   white-space: pre;
 }
 
-.panel>.margin>.number {
+custom-editor>.margin>.number {
   padding: 0 10px;
   color: var(--margin-font-color);
 }
 
-.panel>.margin>.number.even {
+custom-editor>.margin>.number:nth-child(even) {
   background: var(--even-line-color);
 }
 
-/* VIEWPORT */
+/* EDITOR VIEWPORT */
 
-.panel>.viewport {
+custom-editor>.viewport {
   flex: 1;
   padding: 0 0 calc(var(--line-height) * 4) 0;
   overflow: auto;
 }
 
-/* LINES */
+/* EDITOR LINES */
 
-.panel>.viewport>.lines {
+custom-editor>.viewport>.lines {
   white-space: pre;
   min-width: max-content;
 }
 
-.panel>.viewport>.lines>.line.even {
+custom-editor>.viewport>.lines>.line:nth-child(even) {
   background: var(--even-line-color);
 }
 
-.panel>.viewport>.lines>.line {
+custom-editor>.viewport>.lines>.line {
   line-height: var(--line-height);
   padding: 0 128px 0 0;
 }
 
-.panel>.viewport>.lines>.line>.highlight {
+custom-editor>.viewport>.lines>.line>.highlight {
   background: var(--line-highlight);
 
 }
 
-.panel>.viewport>.lines>.line>.tokens {
+custom-editor>.viewport>.lines>.line>.tokens {
   overflow-wrap: normal;
 }
 
-.panel>.viewport>.lines>.line>.tokens>.token {
+custom-editor>.viewport>.lines>.line>.tokens>.token {
   background: rgb(74, 27, 136);
 }
 
 /* SCROLLBARS */
 
-::-webkit-scrollbar {
+/* TEST */
+custom-editor::-webkit-scrollbar {
   width: var(--scrollbar-size);
   height: var(--scrollbar-size);
   position: fixed;
 }
 
-::-webkit-scrollbar-track {
+custom-editor::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+custom-editor::-webkit-scrollbar-thumb {
   background: #31314e66;
 }
 
-::-webkit-scrollbar-thumb:hover {
+custom-editor::-webkit-scrollbar-thumb:hover {
   background: #31314e99;
 }
 
-::-webkit-scrollbar {
+custom-editor::-webkit-scrollbar {
   background: transparent;
 }
 
-::-webkit-scrollbar-corner {
+custom-editor::-webkit-scrollbar-corner {
   background: transparent;
   /* Color of the scrollbar corner */
 }

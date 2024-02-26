@@ -1,4 +1,60 @@
 import { invoke } from "@tauri-apps/api/tauri";
+import { Panels, Panel } from "./panels.ts";
+import { hotkey_add } from "./hotkeys.ts";
+
+const panels = new Panels();
+document.body.append(panels);
+
+const panel_1: Panel = panels.new_panel();
+panel_1.content.textContent = "Hello, world!";
+
+const options = {
+	resizable: true,
+	preservable: true,
+	spawn_at_random: true,
+	spawn_at_cursor: false,
+};
+const panel_2: Panel = panels.new_panel(options);
+
+const panel_3: Panel = panels.new_panel();
+panel_3.content.innerHTML = `<a href="normalize.html">Normalize</a>`;
+
+hotkey_add(
+	"r",
+	"Reconstruct Network",
+	"Reconstruct network on current panel using current choices",
+	() => alert("Reconstructing network!"),
+	true
+);
+hotkey_add("n", "New panel", "New panel", () => panels.new_panel());
+
+// actionbar: HTMLDivElement = document.createElement("div");
+// folders: HTMLDivElement = document.createElement("div");
+
+class Editor extends HTMLElement {
+	margin: HTMLDivElement = document.createElement("div");
+	viewport: HTMLDivElement = document.createElement("div");
+	lines: HTMLDivElement = document.createElement("div");
+
+	constructor() {
+		super();
+
+		this.classList.add("editor");
+		this.margin.classList.add("margin");
+		this.lines.classList.add("lines");
+		this.viewport.classList.add("viewport");
+
+		// contenteditable="true" spellcheck="false"
+		this.setAttribute("contenteditable", "true");
+		this.setAttribute("spellcheck", "false");
+
+		this.viewport.append(this.lines);
+		this.append(this.margin, this.viewport);
+	}
+}
+customElements.define("custom-editor", Editor);
+
+panel_2.content.append(new Editor());
 
 interface Token {
 	kind: string;
@@ -6,7 +62,7 @@ interface Token {
 	pos: [number, number];
 }
 
-const panelElements: NodeListOf<Element> = document.querySelectorAll(".panel");
+const panelElements: NodeListOf<Element> = document.querySelectorAll(".editor");
 
 panelElements.forEach(async (panel: Element) => {
 	const margin: Element | null = panel.querySelector(".margin");
@@ -14,7 +70,7 @@ panelElements.forEach(async (panel: Element) => {
 	const viewport: Element | null = panel.querySelector(".viewport");
 
 	if (!margin || !lines || !viewport) {
-		console.error("A panel is missing some sub-elements");
+		console.error("An editor is missing some sub-elements");
 		return;
 	}
 
@@ -65,11 +121,6 @@ panelElements.forEach(async (panel: Element) => {
 				tokens = document.createElement("div");
 				tokens.classList.add("tokens");
 				line_elem?.appendChild(tokens);
-
-				if (current_line % 2 == 0) {
-					line_elem.classList.add("even");
-					marginNumber.classList.add("even");
-				}
 			}
 		}
 

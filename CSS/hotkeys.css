@@ -4,6 +4,10 @@
 	--hotkeys-keys: #1f1b29;
 }
 
+body {
+	font-family: Segoe UI;
+}
+
 @keyframes fadeout {
 	0% {
 		background-color: var(--modal-background);
@@ -23,11 +27,14 @@
 	height: 100%;
 	background-color: var(--modal-background);
 	pointer-events: none;
-	-webkit-backdrop-filter: blur(16px);
-	backdrop-filter: blur(16px);
+	backdrop-filter: blur(45px);
 	z-index: 998;
-	animation: fadeout 0.2s ease-in-out forwards 1s;
 	text-transform: uppercase;
+	animation-name: fadeout;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-delay: 0.6s;
 }
 #hotkeys_tip::before {
 	content: 'Press K for hotkeys';
@@ -36,9 +43,11 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
-#hotkeys_tip.hidden {
-	display: none;
+	animation-name: fadeout;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-delay: 0.6s;
 }
 
 #keypress_preview {
@@ -67,15 +76,14 @@
 	width: 100%;
 	height: 100%;
 	background-color: var(--modal-background);
-	-webkit-backdrop-filter: blur(16px);
-	backdrop-filter: blur(16px);
+	backdrop-filter: blur(45px);
 	z-index: 998;
 	cursor: pointer;
 }
 #modal.hidden {
 	visibility: hidden;
 }
-#modal > div {
+#modal>div {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -83,7 +91,7 @@
 	border-radius: 5px;
 	cursor: default;
 }
-#modal > div.hidden {
+#modal>div.hidden {
 	display: none;
 }
 
@@ -92,7 +100,7 @@
 	height: 300px;
 	background-color: var(--hotkeys-background);
 }
-#hotkeys > #keyboard {
+#hotkeys>#keyboard {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -102,12 +110,12 @@
 	display: flex;
 	flex-direction: column;
 }
-#hotkeys > #keyboard > .row {
+#hotkeys>#keyboard>.row {
 	display: flex;
 	flex-direction: row;
 	flex-grow: 1;
 }
-#hotkeys > #keyboard > .row > .key {
+#hotkeys>#keyboard>.row>.key {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -119,25 +127,25 @@
 	font-size: 12px;
 	text-transform: uppercase;
 }
-#hotkeys > #keyboard > .row > .key.used {
+#hotkeys>#keyboard>.row>.key.used {
 	background-color: #9595ed;
 	color: #222236;
 	cursor: help;
 	background-image: linear-gradient(-45deg, transparent, #ffffff66);
 }
-#hotkeys > #keyboard > .row > .key.wip {
+#hotkeys>#keyboard>.row>.key.wip {
 	background-color: #4ceca7;
 }
-#hotkeys > #keyboard > .row > .key:hover {
+#hotkeys>#keyboard>.row>.key:hover {
 	filter: brightness(1.2);
 }
-#hotkeys > #keyboard > .row > .key.large {
+#hotkeys>#keyboard>.row>.key.large {
 	flex: 2;
 }
-#hotkeys > #keyboard > .row > .key.space {
+#hotkeys>#keyboard>.row>.key.space {
 	flex: 6;
 }
-#hotkeys > #keyboard > .row > .key > .pophover {
+#hotkeys>#keyboard>.row>.key>.pophover {
 	display: none;
 	position: absolute;
 	padding: 0 15px;
@@ -153,7 +161,7 @@
 	pointer-events: none;
 	background: #ffffff;
 }
-#hotkeys > #keyboard > .row > .key > .pophover > .wip_icon {
+#hotkeys>#keyboard>.row>.key>.pophover>.wip_icon {
 	width: 30px;
 	height: 30px;
 	color: #4ceca7;
@@ -164,7 +172,7 @@
 	background: #1f1b29;
 	margin-left: 8px;
 }
-#hotkeys > #keyboard > .row > .key > .pophover:before {
+#hotkeys>#keyboard>.row>.key>.pophover:before {
 	content: '';
 	position: absolute;
 	top: 30px;
@@ -176,6 +184,6 @@
 	border-right: 10px solid transparent;
 	border-top: 8px solid #ffffff;
 }
-#hotkeys > #keyboard > .row > .key:hover > .pophover {
+#hotkeys>#keyboard>.row>.key:hover>.pophover {
 	display: block;
 }

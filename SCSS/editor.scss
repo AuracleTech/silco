@@ -38,6 +38,12 @@ custom-editor {
     display: flex;
     flex-direction: row;
 
+    // TEMP
+    &>* {
+        outline: 1px dotted red;
+    }
+    // TEMP
+
     &>.margin {
         flex-shrink: 0;
         text-align: center;

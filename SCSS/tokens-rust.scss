@@ -1,0 +1,78 @@
+/*
+RUST SYNTAX HIGHLIGHT
+Whitespace
+Keyword
+CommentLine
+CommentBlock
+Newline
+String
+Char
+Operator
+DoubleColon
+Semicolon
+Colon
+Identifier
+Caret
+Integer
+Float
+
+Lifetime
+OpenBrace
+CloseBrace
+OpenParen
+CloseParen
+OpenBracket
+CloseBracket
+Comma
+Hash
+Dot
+Pipe
+OpenAngle
+CloseAngle
+TempBorrow
+Question
+MacroExclamation
+*/
+
+.token {
+    color: red;
+
+    &.rust {
+        &.Keyword {
+            color: #D59DF6;
+        }
+
+        &.CommentLine,
+        &.CommentBlock {
+            color: #506686;
+        }
+
+        &.String {
+            color: #22ffbd;
+        }
+
+        &.Char {
+            color: #AC58FF;
+        }
+
+        &.Operator,
+        &.DoubleColon,
+        &.Colon,
+        &.Caret {
+            color: #4FF2F8;
+        }
+
+        &.Identifier {
+            color: #B7C6DA;
+        }
+
+        &.Semicolon {
+            color: #d8d8d8;
+        }
+
+        &.Float,
+        &.Integer {
+            color: #42ff76;
+        }
+    }
+}

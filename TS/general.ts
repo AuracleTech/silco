@@ -1,6 +1,13 @@
 import { invoke } from "@tauri-apps/api/tauri";
-import { Panels, Panel } from "./panels.ts";
-import { hotkey_add } from "./hotkeys.ts";
+
+import "../../panels/SCSS/panels.scss";
+import { Panels, Panel } from "../../panels/TS/panels.ts";
+import "../../hotkeys/SCSS/hotkeys.scss";
+import { Hotkeys } from "../../hotkeys/TS/hotkeys.ts";
+import "../SCSS/editor.scss";
+import { Editor } from "./editor.ts";
+
+const hotkeys = new Hotkeys();
 
 const panels = new Panels();
 document.body.append(panels);
@@ -8,53 +15,47 @@ document.body.append(panels);
 const panel_1: Panel = panels.new_panel();
 panel_1.content.textContent = "Hello, world!";
 
-const options = {
+const panel_2: Panel = panels.new_panel({
 	resizable: true,
 	preservable: true,
-	spawn_at_random: true,
+	spawn_at_random: false,
 	spawn_at_cursor: false,
-};
-const panel_2: Panel = panels.new_panel(options);
+});
+panel_2.content.append(new Editor());
 
-const panel_3: Panel = panels.new_panel();
-panel_3.content.innerHTML = `<a href="normalize.html">Normalize</a>`;
+// const panel_3: Panel = panels.new_panel();
+// panel_3.content.innerHTML = `<a href="normalize.html">Normalize</a>`;
 
-hotkey_add(
-	"r",
-	"Reconstruct Network",
-	"Reconstruct network on current panel using current choices",
-	() => alert("Reconstructing network!"),
-	true
-);
-hotkey_add("n", "New panel", "New panel", () => panels.new_panel());
+hotkeys.set({
+	key: "r",
+	short: "Changing content",
+	long: "Changing content on the panel to whatever",
+	func: () => {
+		let focused = panels.focused;
+		if (focused === undefined) return;
+		focused.content.textContent = "Panel content changed!";
+	},
+	experimental: true,
+});
+
+hotkeys.set({
+	key: "n",
+	short: "New panel",
+	long: "Create a new panel",
+	func: () => panels.new_panel(),
+	experimental: true,
+});
+
+hotkeys.set({
+	key: "h",
+	short: "Hotkeys",
+	long: "Display the hotkeys panel",
+	func: () => hotkeys.toggle_modal(),
+	experimental: false,
+});
 
 // actionbar: HTMLDivElement = document.createElement("div");
 // folders: HTMLDivElement = document.createElement("div");
-
-class Editor extends HTMLElement {
-	margin: HTMLDivElement = document.createElement("div");
-	viewport: HTMLDivElement = document.createElement("div");
-	lines: HTMLDivElement = document.createElement("div");
-
-	constructor() {
-		super();
-
-		this.classList.add("editor");
-		this.margin.classList.add("margin");
-		this.lines.classList.add("lines");
-		this.viewport.classList.add("viewport");
-
-		// contenteditable="true" spellcheck="false"
-		this.setAttribute("contenteditable", "true");
-		this.setAttribute("spellcheck", "false");
-
-		this.viewport.append(this.lines);
-		this.append(this.margin, this.viewport);
-	}
-}
-customElements.define("custom-editor", Editor);
-
-panel_2.content.append(new Editor());
 
 interface Token {
 	kind: string;

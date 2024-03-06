@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'Fira Code';
+    src: url('../FONT/FiraCode.ttf') format('truetype');
+}
+
+:root {
+    --line-height: 24px;
+    --scrollbar-size: 16px;
+}
+
+.actionbar {
+    min-width: 50px;
+    background-color: #151520;
+}
+
+.folders {
+    min-width: 200px;
+    background-color: #1E1D2E;
+}
+
+/* EDITOR */
+
+custom-editor {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+
+    font-family: 'Fira Code';
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    font-weight: 400;
+    color: #97A7C8;
+    background-color: #222236;
+    caret-color: #ACED00;
+
+    display: flex;
+    flex-direction: row;
+
+    &>.margin {
+        flex-shrink: 0;
+        text-align: center;
+        overflow: hidden;
+        line-height: var(--line-height);
+        font-size: 13px;
+        padding: 0 0 calc(calc(var(--line-height) * 4) + var(--scrollbar-size)) 0;
+        white-space: pre;
+        user-select: none;
+        display: flex;
+        flex-direction: column;
+
+        &>.number:nth-child(even) {
+            background: #00000011;
+        }
+
+        &>.number {
+            padding: 0 10px;
+            color: #50506d;
+        }
+    }
+
+    &>.viewport {
+        flex-grow: 1;
+        padding: 0 0 calc(var(--line-height) * 4) 0;
+        overflow: auto;
+
+        &>.lines {
+            white-space: pre;
+            min-width: max-content;
+            outline: none;
+
+            &>.line:nth-child(even) {
+                background: #00000011;
+            }
+
+            &>.line {
+                line-height: var(--line-height);
+                padding: 0 26px 0 0;
+
+                &>.highlight {
+                    background: #24273E;
+                }
+
+                &>.tokens {
+                    overflow-wrap: normal;
+
+                    &>.token {
+                        background: rgb(74, 27, 136);
+                    }
+                }
+            }
+        }
+
+        &::-webkit-scrollbar {
+            width: var(--scrollbar-size);
+            height: var(--scrollbar-size);
+            position: fixed;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #31314e66;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #31314e99;
+        }
+
+        &::-webkit-scrollbar {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+    }
+}
+
+@import 'tokens-rust';

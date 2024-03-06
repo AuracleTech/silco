@@ -1,13 +1,16 @@
-* {
-    outline: 1px dotted red;
-    padding: 0;
-    margin: 0;
-    outline: 0;
+/* TEMP */
+custom-panel .content * {
+    /* outline: 1px dotted red; */
 }
 
 body,
 html {
     height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
     background-color: #fff;
     color: #000;
 }

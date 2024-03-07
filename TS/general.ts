@@ -32,9 +32,7 @@ hotkeys.set({
 			spawn_at_random: false,
 			spawn_at_cursor: true,
 		});
-		let editor = new Editor();
-		panel_editor.content.append(editor);
-		editor.init();
+		panel_editor.content.append(new Editor());
 	},
 	experimental: true,
 });

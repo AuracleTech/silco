@@ -1,0 +1,17 @@
+custom-terminal {
+    max-width: 100%;
+    max-height: 100%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    font-family: 'consolas';
+    color: greenyellow;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: nowrap;
+
+    .error {
+        color: #ff5168;
+    }
+}

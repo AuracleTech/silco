@@ -7,6 +7,9 @@ import { Hotkeys } from "../../hotkeys/TS/hotkeys.ts";
 import "../SCSS/editor.scss";
 import { Editor } from "./editor.ts";
 
+import "../SCSS/terminal.scss";
+import { Terminal } from "./terminal.ts";
+
 const hotkeys = new Hotkeys();
 
 const panels = new Panels();

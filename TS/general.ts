@@ -1,7 +1,9 @@
 import "../../panels/SCSS/panels.scss";
 import { Panels, Panel } from "../../panels/TS/panels.ts";
+
 import "../../hotkeys/SCSS/hotkeys.scss";
 import { Hotkeys } from "../../hotkeys/TS/hotkeys.ts";
+
 import "../SCSS/editor.scss";
 import { Editor } from "./editor.ts";
 

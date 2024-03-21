@@ -1,25 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use jayce::{duos, Tokenizer};
-use regex::Regex;
-// use tauri::Window;
-
-const _SOURCE: &str = "Excalibur = 5000$; // Your own language!";
-
-lazy_static::lazy_static! (
-    static ref DUOS: Vec<(&'static str, Regex)> = duos![
-        "whitespace", r"^[^\S\n]+",
-        "comment_line", r"^//(.*)",
-        "comment_block", r"^/\*(.|\n)*?\*/",
-        "newline", r"^\n",
-
-        "price", r"^[0-9]+\$",
-        "semicolon", r"^;",
-        "operator", r"^=",
-        "name", r"^[a-zA-Z_]+"
-    ];
-);
+use jayce::Tokenizer;
 
 fn main() {
     tauri::Builder::default()

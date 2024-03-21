@@ -17,21 +17,15 @@ custom-editor {
     color: #97A7C8;
     background-color: #222236;
     caret-color: #ACED00;
+    line-height: var(--line-height);
 
     display: flex;
     flex-direction: row;
-
-    // TEMP
-    &>* {
-        outline: 1px dotted #ACED00;
-    }
-    // TEMP
 
     &>.margin {
         flex-shrink: 0;
         text-align: center;
         overflow: hidden;
-        line-height: var(--line-height);
         font-size: 13px;
         padding: 0 0 calc(calc(var(--line-height) * 4) + var(--scrollbar-size)) 0;
         white-space: pre;
@@ -49,85 +43,83 @@ custom-editor {
         }
     }
 
-    &>.viewport {
+    &>.render_area {
         flex-grow: 1;
-        padding: 0 0 calc(var(--line-height) * 4) 0;
         overflow: auto;
         position: relative;
+        padding: 0 0 calc(var(--line-height) * 4) 0;
 
-        &>.keygrab {
+        &>.source {
             position: absolute;
-            z-index: 999;
             width: 100%;
             height: 100%;
-            color: #fff;
-            background: #ff000022;
+            color: red;
+            background: transparent;
             resize: none;
             outline: none;
             border: none;
-            padding: none;
-            margin: none;
-            overflow: none;
-            font-family: 'Fira Code';
-            font-size: 14px;
-            letter-spacing: -0.2px;
-            font-weight: 400;
-            line-height: var(--line-height);
+            padding: 0;
+            white-space: pre;
+            overflow: hidden;
         }
 
-        &>.lines {
-            white-space: pre;
-            min-width: max-content;
-            outline: none;
+        &>.render {
+            overflow: auto;
 
-            &>.line:nth-child(even) {
-                background: #00000011;
-            }
+            &>.lines {
+                white-space: pre;
+                min-width: max-content; // TEST missing in .keygrab
+                outline: none;
 
-            &>.line {
-                line-height: var(--line-height);
-                padding: 0 26px 0 0;
-
-                &>.highlight {
-                    background: #24273E;
+                &>.line:nth-child(even) {
+                    background: #00000011;
                 }
 
-                &>.tokens {
-                    overflow-wrap: normal;
+                &>.line {
+                    line-height: var(--line-height);
+                    padding: 0 26px 0 0;
 
-                    &>.token {
-                        background: rgb(74, 27, 136);
+                    &>.highlight {
+                        background: #24273E;
+                    }
+
+                    &>.tokens {
+                        overflow-wrap: normal;
+
+                        &>.token {
+                            background: rgb(74, 27, 136);
+                        }
                     }
                 }
             }
         }
-
-        &::-webkit-scrollbar {
-            width: var(--scrollbar-size);
-            height: var(--scrollbar-size);
-            position: fixed;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: #31314e66;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-            background: #31314e99;
-        }
-
-        &::-webkit-scrollbar {
-            background: transparent;
-        }
-
-        &::-webkit-scrollbar-corner {
-            background: transparent;
-        }
     }
-}
 
-@import 'tokens-rust';
+    ::-webkit-scrollbar {
+        width: var(--scrollbar-size);
+        height: var(--scrollbar-size);
+        position: fixed;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #31314e66;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #31314e99;
+    }
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    @import 'tokens-rust';
+}
